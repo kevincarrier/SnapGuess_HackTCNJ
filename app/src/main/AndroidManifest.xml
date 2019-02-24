@@ -11,6 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".CanvasActivity"></activity>
 
         <meta-data
             android:name="com.snapchat.kit.sdk.clientId"
@@ -21,7 +22,8 @@
         <meta-data
             android:name="com.snapchat.kit.sdk.scopes"
             android:resource="@array/snap_connect_scopes" />
-        <activity android:name=".endGame"></activity>
+
+        <activity android:name=".endGame" />
         <activity android:name=".drawGame" />
         <activity android:name=".GuessGame" />
         <activity android:name=".Rules" />

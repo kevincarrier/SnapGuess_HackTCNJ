@@ -41,7 +41,7 @@ public class drawGame extends AppCompatActivity {
     }
 
     public void GuessGame(View v) {
-        Intent guessIntent = new Intent(drawGame.this, GuessGame.class);
+        Intent guessIntent = new Intent(drawGame.this, CanvasActivity.class);
         guessIntent.putExtra("gnum", gnum);
         startActivity(guessIntent);
     }
