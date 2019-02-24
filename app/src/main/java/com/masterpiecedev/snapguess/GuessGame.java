@@ -13,9 +13,10 @@ public class GuessGame extends AppCompatActivity {
     celebrities celebrity = new celebrities();
     String [] celebrities =celebrity.getCelebrity();
     int[] celebrityImg = celebrity.getCelebrityImg();
-    Intent intent = getIntent();
-    private int gnum = 4;//intent.getIntExtra("gnum", 0);
-    private String celebrityName = celebrity.getCelebrity()[gnum];;
+    int gnum;
+    String celebrityName;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -23,19 +24,23 @@ public class GuessGame extends AppCompatActivity {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_guess_game);
 
+            Intent intent = getIntent();
+            gnum = intent.getIntExtra("gnum", 0);
+            celebrityName = celebrity.getCelebrity()[gnum];
+
             TextView dashes = (TextView) findViewById(R.id.dashes);
             dashes.setText(convertToDashes());
             TextView points = (TextView) findViewById(R.id.points);
             points.setText("Points: " + celebrity.getPoints());
-            EditText guess = (EditText) findViewById(R.id.guess);
+        final EditText guess = (EditText) findViewById(R.id.guess);
 
-        final String celebrityGuess = celebrityName;//.getText().toString();
-       // System.out.println(celebrityGuess +"30");
+        // System.out.println(celebrityGuess +"30");
         final Button sendGuess = (Button) findViewById(R.id.sendGuess);
         sendGuess.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //System.out.println(celebrityGuess +"35");
+                final String celebrityGuess = guess.getText().toString();
                 sendGuess(celebrityGuess);
             }
 

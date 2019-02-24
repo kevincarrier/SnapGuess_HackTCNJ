@@ -24,9 +24,9 @@ public class drawGame extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_draw_game);
-        gnum = 4;//celebrity.genNum();
-        if(gnum == -1)
-            endGame();
+       gnum = celebrity.genNum();
+        //if(gnum == -1)
+        //    endGame();
         TextView celebrityName = (TextView) findViewById(R.id.celebrityName);
         celebrityName.setText(celebrities[gnum]);
         ImageView img = (ImageView) findViewById(R.id.celebrityImg);

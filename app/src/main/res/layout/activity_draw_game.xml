@@ -1,23 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".drawGame">
 
-    <Button
-        android:id="@+id/send"
-        android:layout_width="109dp"
-        android:layout_height="66dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="50dp"
-        android:text="Send"
-        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+    <TextView
+        android:id="@+id/counter_timer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2:00"
+        android:textSize="25sp"
+        />
+
 
     <TextView
         android:id="@+id/celebrityName"
@@ -28,9 +24,7 @@
         android:layout_marginEnd="8dp"
         android:gravity="center_horizontal"
         android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_below="@id/counter_timer" />
 
     <ImageView
         android:id="@+id/celebrityImg"
@@ -39,7 +33,18 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/celebrityName" />
-</android.support.constraint.ConstraintLayout>
+        android:layout_below="@id/celebrityName" />
+
+    <Button
+        android:id="@+id/send"
+        android:layout_width="109dp"
+        android:layout_height="66dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="50dp"
+        android:text="Send"
+        android:layout_centerHorizontal="true"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+        android:layout_below="@id/celebrityImg" />
+
+</RelativeLayout>
