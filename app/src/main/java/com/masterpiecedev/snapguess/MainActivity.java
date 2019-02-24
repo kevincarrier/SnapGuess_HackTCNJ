@@ -1,10 +1,18 @@
 package com.masterpiecedev.snapguess;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
+
+import com.snapchat.kit.sdk.SnapLogin;
+import com.snapchat.kit.sdk.core.controller.LoginStateController;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -25,6 +33,57 @@ public class MainActivity extends AppCompatActivity {
                 drawGame(v);
             }
         });
+
+        try
+        {
+            if (SnapLogin.isUserLoggedIn(this)) {
+
+                Intent displayIntent = new Intent(this, drawGame.class);
+                startActivity(displayIntent);
+
+            }else{
+
+                View mLoginButton = SnapLogin.getButton(getApplicationContext(), (ViewGroup)findViewById(R.id.content_frame));
+                RelativeLayout.LayoutParams testLP = new RelativeLayout.LayoutParams(1000, 200);
+
+                testLP.addRule(RelativeLayout.CENTER_HORIZONTAL);
+
+
+                mLoginButton.setLayoutParams(testLP);
+            }
+
+            final LoginStateController.OnLoginStateChangedListener mLoginStateChangedListener =
+                    new LoginStateController.OnLoginStateChangedListener() {
+                        @Override
+                        public void onLoginSucceeded() {
+
+                            Intent displayIntent = new Intent(MainActivity.this, drawGame.class);
+                            startActivity(displayIntent);
+                        }
+
+
+                        @Override
+                        public void onLoginFailed() {
+
+                        }
+
+                        @Override
+                        public void onLogout() {
+
+                            SnapLogin.getAuthTokenManager(MainActivity.this).revokeToken();
+                            Toast.makeText(getApplicationContext(), "Logged out", Toast.LENGTH_LONG).show();
+                            recreate();
+                        }
+                    };
+
+
+            SnapLogin.getLoginStateController(this).addOnLoginStateChangedListener(mLoginStateChangedListener);
+        }
+        catch(Exception ex)
+        {
+            Log.e("Error", ex.getMessage());
+        }
+
     }
     protected void rules(View v)
     {
