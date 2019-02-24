@@ -1,1 +1,1 @@
-# SnapGuess_HackTCNJ
+# SnapGuess
