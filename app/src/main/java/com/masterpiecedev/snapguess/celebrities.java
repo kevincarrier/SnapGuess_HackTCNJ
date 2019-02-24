@@ -7,6 +7,7 @@ public class celebrities {
             R.drawable.cosby, R.drawable.chappelle, R.drawable.trump, R.drawable.williams, R.drawable.nadal, R.drawable.federer, R.drawable.un};
     private static int numsUsed[] = {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
     public static int points;
+    int generatedNum;
     celebrities()
     {
 
@@ -23,22 +24,28 @@ public class celebrities {
     {
         return points;
     }
-
+    public void resetNumsUsed()
+    {
+        for (int i = 0; i<12; i++) {
+            numsUsed[i] = -1;
+        }
+    }
     public int genNum() {
         while (true) {
             boolean state = true;
-            int generatedNum = (int) (Math.random() * 12);
+            generatedNum = (int) (Math.random() * 12);
             for (int i = 0; i < 12; i++) {
                 if (numsUsed[i] == generatedNum) {
                     state = false;
                     if (checkNull())
                         return -1;
                 }
+            }
                 if (state) {
                     numsUsed[generatedNum] = generatedNum;
                     return generatedNum;
                 }
-            }
+
 
         }
     }

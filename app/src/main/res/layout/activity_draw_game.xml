@@ -18,6 +18,7 @@
         android:layout_height="wrap_content"
         android:text="2:00"
         android:textSize="25sp"
+        android:layout_marginTop="40px"
         />
 
 
@@ -45,12 +46,9 @@
         android:id="@+id/send"
         android:layout_width="109dp"
         android:layout_height="66dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="50dp"
-        android:text="Send"
+        android:layout_below="@id/celebrityImg"
         android:layout_centerHorizontal="true"
-        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
-        android:layout_below="@id/celebrityImg" />
+        android:text="Next"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large" />
 
 </RelativeLayout>

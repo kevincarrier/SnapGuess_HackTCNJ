@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CanvasActivity"></activity>
+        <activity android:name=".homePage2"></activity>
+        <activity android:name=".loseGame" />
+        <activity android:name=".CanvasActivity" />
 
         <meta-data
             android:name="com.snapchat.kit.sdk.clientId"

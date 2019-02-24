@@ -2,6 +2,7 @@ package com.masterpiecedev.snapguess;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -11,10 +12,12 @@ import android.widget.TextView;
 public class GuessGame extends AppCompatActivity {
     private int points = 0;
     celebrities celebrity = new celebrities();
-    String [] celebrities =celebrity.getCelebrity();
-    int[] celebrityImg = celebrity.getCelebrityImg();
     int gnum;
     String celebrityName;
+    long timeLeftInMilliseconds;
+    private TextView counterTimer;
+    private CountDownTimer countDownTimer;
+    private boolean timeRemaining;
 
 
     @Override
@@ -26,6 +29,26 @@ public class GuessGame extends AppCompatActivity {
 
             Intent intent = getIntent();
             gnum = intent.getIntExtra("gnum", 0);
+            timeLeftInMilliseconds = intent.getLongExtra("timeLeftInMilliseconds", 0);
+
+        if(timeLeftInMilliseconds == 0)
+        {
+            Intent i = new Intent(GuessGame.this, loseGame.class);
+            startActivity(i);
+        }
+
+
+
+
+
+        counterTimer = findViewById(R.id.counter_timer3);
+
+
+
+
+
+
+
             celebrityName = celebrity.getCelebrity()[gnum];
 
             TextView dashes = (TextView) findViewById(R.id.dashes);
@@ -46,6 +69,7 @@ public class GuessGame extends AppCompatActivity {
 
         });
 
+        CountDownTimerMethod();
     }
 
 
@@ -67,6 +91,7 @@ public class GuessGame extends AppCompatActivity {
             validity.setText("Correct!");
             celebrity.points+=10;
             Intent intent = new Intent(this, drawGame.class);
+            intent.putExtra("timeLeftInMilliseconds",timeLeftInMilliseconds);
             startActivity(intent);
         }
         else
@@ -78,6 +103,41 @@ public class GuessGame extends AppCompatActivity {
         if (celebrityName.toLowerCase().equals(celebrityGuess.toLowerCase()))
             return true;
         return false;
+    }
+
+    public void CountDownTimerMethod()
+    {
+        countDownTimer = new CountDownTimer(timeLeftInMilliseconds, 1000) {
+            @Override
+            public void onTick(long l) {
+                timeLeftInMilliseconds = l;
+                updateTimer();
+            }
+
+            @Override
+            public void onFinish() {
+
+            }
+        }.start();
+    }
+    public void updateTimer(){
+
+        int minutes = (int) timeLeftInMilliseconds / 60000;
+        int seconds = (int) timeLeftInMilliseconds % 60000 / 1000;
+
+        //int minutes = (int) timeLeftInMilliseconds / 4000;
+        //int seconds = (int) timeLeftInMilliseconds % 4000 / 1000;
+
+
+
+        String timeLeftText;
+        timeLeftText = "" + minutes;
+        timeLeftText += ":";
+        if(seconds < 10) timeLeftText += "0";
+        timeLeftText += seconds;
+
+        counterTimer.setText(timeLeftText);
+
     }
 
 }

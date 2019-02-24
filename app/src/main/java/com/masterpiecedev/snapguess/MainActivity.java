@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         {
             if (SnapLogin.isUserLoggedIn(this)) {
 
-                Intent displayIntent = new Intent(this, drawGame.class);
+                Intent displayIntent = new Intent(this, homePage2.class);
                 startActivity(displayIntent);
 
             }else{

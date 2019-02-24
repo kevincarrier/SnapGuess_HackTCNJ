@@ -23,13 +23,13 @@
         android:id="@+id/drawGame"
         android:layout_width="151dp"
         android:layout_height="64dp"
+        android:layout_below="@id/textView"
+        android:layout_centerHorizontal="true"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="76dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="100dp"
-        android:text="Start Game"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/textView"
-       />
+        android:text="Start Game" />
 
 
 

@@ -5,20 +5,22 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
-public class endGame extends AppCompatActivity {
+public class loseGame extends AppCompatActivity {
     celebrities celebrity = new celebrities();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_lose_game);
         celebrity.resetNumsUsed();
-
-        setContentView(R.layout.activity_end_game);
-        Button back = (Button) this.<View>findViewById(R.id.back);
-        back.setOnClickListener(new View.OnClickListener() {
+        TextView points = (TextView) findViewById(R.id.points);
+        points.setText("You got "  + celebrity.getPoints() + " points!");
+        Button tohome = (Button) this.<View>findViewById(R.id.tohome);
+        tohome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent backButton = new Intent(endGame.this, MainActivity.class);
+                Intent backButton = new Intent(loseGame.this, MainActivity.class);
                 startActivity(backButton);
             }
         });
